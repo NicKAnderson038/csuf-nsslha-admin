@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+## vue-cli
+
+* vue init vuetifyjs/pwa csuf-nsslha-admin
+
 ## Build Setup
 
 ```bash
