@@ -2,8 +2,9 @@
    <v-layout>
     <v-flex lg10 md10 xs10 sm10 offset-sm1>
       <v-card style="margin-top:60px;">
-        <v-card-media src="https://wallpaper.wiki/wp-content/uploads/2017/05/Adventure-Time-Treasury.jpg" height="260px">
+        <v-card-media :src="image" height="360px">
         </v-card-media>
+        <!-- <v-parallax :src="image" height="300"></v-parallax> -->
    <v-data-table
       v-bind:headers="headers"
       :items="items"
@@ -42,7 +43,9 @@ export default {
         { text: "Csha", value: "Csha" },
         { text: "Attendance", value: "Attendance" }
       ],
-      items: []
+      items: [],
+      image:
+        "https://wallpaper.wiki/wp-content/uploads/2017/05/Adventure-Time-Treasury.jpg"
     };
   },
   created() {
