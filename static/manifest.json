@@ -1,6 +1,6 @@
 {
-  "name": "csuf-nsslha-admin",
-  "short_name": "csuf-nsslha-admin",
+  "name": "csuf nsslha admin",
+  "short_name": "Nsslha Admin",
   "icons": [
     {
       "src": "img/icons/android-chrome-192x192.png",

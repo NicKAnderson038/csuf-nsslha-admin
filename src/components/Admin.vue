@@ -1,4 +1,9 @@
 <template>
+   <v-layout>
+    <v-flex lg10 md10 xs10 sm10 offset-sm1>
+      <v-card style="margin-top:60px;">
+        <v-card-media src="https://wallpaper.wiki/wp-content/uploads/2017/05/Adventure-Time-Treasury.jpg" height="260px">
+        </v-card-media>
    <v-data-table
       v-bind:headers="headers"
       :items="items"
@@ -14,6 +19,9 @@
       <td class="text-xs-right">{{ props.item.Attendance }}</td>
     </template>
   </v-data-table>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
