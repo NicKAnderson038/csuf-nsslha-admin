@@ -2,6 +2,7 @@
   <v-layout>
     <v-flex lg10 md10 xs10 sm10 offset-sm1>
       <v-card style="margin-top:60px;">
+        <v-btn color="primary" @click="pressed()">Button</v-btn>
         <v-card-media :src="image" height="360px">
         </v-card-media>
         <!-- <v-parallax :src="image" height="300"></v-parallax> -->
@@ -20,8 +21,8 @@
             <v-card-text>Permanently remove {{ props.item.Name }} from the data table?</v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="red darken-1" flat="flat" right @click="deleteName(props.item.id)">Delete</v-btn>
-              <v-btn color="grey darken-1" flat="flat" @click.native="dialog = false">Close</v-btn>
+              <v-btn color="redText darken-1" flat="flat" right @click="deleteName(props.item.id)">Delete</v-btn>
+              <v-btn color="greyText darken-1" flat="flat" @click.native="dialog = false">Close</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -80,7 +81,9 @@ export default {
   },
   created() {
     try {
-      this.fetch();
+      // this.fetch();
+      this.message;
+      this.count;
     } catch (error) {
       console.error(error);
     }
@@ -88,7 +91,23 @@ export default {
   // components: {
   //   DeleteUser
   // },
+  computed: {
+    message() {
+      // return console.log(this.$store.state.message);
+      return console.log(this.$store.getters.message);
+    },
+    count() {
+      return console.log(this.$store.getters.counter);
+    }
+  },
   methods: {
+    pressed() {
+      // /* accessing mutations */
+      // this.$store.commit("increment", 10);
+      // /* accessing actions */
+      this.$store.dispatch("actIncrement", 20);
+      this.$store.dispatch("getFetch");
+    },
     async deleteName(id) {
       const request = {
         method: "DELETE",

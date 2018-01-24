@@ -22,6 +22,6 @@ export default {
 
 <style scoped>
 .app {
-  background: linear-gradient(to bottom right, purple, blue);
+  background: linear-gradient(to bottom right, #800080, #0000ff);
 }
 </style>
