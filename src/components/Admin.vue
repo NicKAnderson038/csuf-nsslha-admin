@@ -2,32 +2,21 @@
   <v-layout>
     <v-flex lg10 md10 xs10 sm10 offset-sm1>
       <v-card style="margin-top:60px;">
-        <v-btn color="primary" @click="pressed()">Button</v-btn>
+        <!-- <v-btn color="primary" @click="pressed()">Button</v-btn> -->
         <v-card-media :src="image" height="360px">
         </v-card-media>
         <!-- <v-parallax :src="image" height="300"></v-parallax> -->
         <v-data-table v-bind:headers="headers" :items="items" hide-actions class="elevation-1">
           <template slot="items" slot-scope="props">
-          <td>{{ props.item.Name }}</td>
-          <td class="text-xs-right">{{ props.item.Email }}</td>
-          <td class="text-xs-right">{{ props.item.Phone }}</td>
-          <td class="text-xs-right">{{ props.item.Nsslha }}</td>
-          <td class="text-xs-right">{{ props.item.Csha }}</td>
-          <td class="text-xs-right">{{ props.item.Attendance }}</td>
-          <td class="text-xs-right"><v-btn flat color="error" left @click.native.stop="dialog = true">Delete</v-btn>
-              <v-dialog v-model="dialog" max-width="260">
-          <v-card>
-            <v-card-title class="headline">Delete {{ props.item.Name }}?</v-card-title>
-            <v-card-text>Permanently remove {{ props.item.Name }} from the data table?</v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="redText darken-1" flat="flat" right @click="deleteName(props.item.id)">Delete</v-btn>
-              <v-btn color="greyText darken-1" flat="flat" @click.native="dialog = false">Close</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        <!-- <delete-user :name="props"></delete-user> -->
-        </td>
+            <td>{{ props.item.Name }}</td>
+            <td class="text-xs-right">{{ props.item.Email }}</td>
+            <td class="text-xs-right">{{ props.item.Phone }}</td>
+            <td class="text-xs-right">{{ props.item.Nsslha }}</td>
+            <td class="text-xs-right">{{ props.item.Csha }}</td>
+            <td class="text-xs-right">{{ props.item.Attendance }}</td>
+            <!-- <td class="text-xs-right">
+              <v-btn flat color="error" left @click="deleteName(props.item.id)">Delete</v-btn>
+          </td> -->
 </template>
   </v-data-table>
       </v-card>
@@ -36,11 +25,10 @@
 </template>
 
 <script>
-// import DeleteUser from "./DeleteUser";
+import DeleteUser from "./DeleteUser";
 export default {
   data() {
     return {
-      dialog: false,
       clipped: false,
       headers: [
         {
@@ -68,11 +56,11 @@ export default {
         {
           text: "Attendance",
           value: "Attendance"
-        },
-        {
-          text: "Delete",
-          value: "Delete"
         }
+        // {
+        //   text: "Delete",
+        //   value: "Delete"
+        // }
       ],
       items: [],
       image:
@@ -81,17 +69,21 @@ export default {
   },
   created() {
     try {
-      // this.fetch();
+      // this.$store.dispatch("fetch");
+      this.fetch();
       this.message;
       this.count;
     } catch (error) {
       console.error(error);
     }
   },
-  // components: {
-  //   DeleteUser
-  // },
+  components: {
+    DeleteUser
+  },
   computed: {
+    // fetch() {
+    //   return (this.items = this.$store.getters.fetch);
+    // },
     message() {
       // return console.log(this.$store.state.message);
       return console.log(this.$store.getters.message);
@@ -122,7 +114,7 @@ export default {
         );
         // const data = await response.json();
         console.log("Delete Successful: ", response.ok);
-        this.dialog = false;
+        // this.dialog = false;
         this.fetch();
         return;
       } catch (err) {

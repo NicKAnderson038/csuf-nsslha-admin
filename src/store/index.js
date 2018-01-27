@@ -6,7 +6,12 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     message: "Hello From Vuex",
-    count: 0
+    count: 0,
+    user: {
+      Name: "Test",
+      id: "1234"
+    },
+    items: []
   },
   mutations: {
     // sycronous
@@ -16,6 +21,41 @@ export const store = new Vuex.Store({
   },
   actions: {
     // async || sycronous
+    async deleteName(id) {
+      const request = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      try {
+        const response = await fetch(
+          `https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha/${id}`,
+          request
+        );
+        // const data = await response.json();
+        console.log("Delete Successful: ", response.ok);
+        this.dialog = false;
+        this.fetch();
+        return;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
+    async fetch() {
+      try {
+        const response = await fetch(
+          "https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha"
+        );
+        const data = await response.json();
+        console.log("It worked! ", data);
+        // this.items = data;
+        state.items = data;
+        return;
+      } catch (error) {
+        throw new Error(err);
+      }
+    },
     actIncrement(state, payload) {
       state.commit("increment", payload);
     },
@@ -33,11 +73,27 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
+    async fetch() {
+      try {
+        const response = await fetch(
+          "https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha"
+        );
+        const data = await response.json();
+        console.log("It worked! ", data);
+        // this.items = data;
+        return data;
+      } catch (error) {
+        throw new Error(err);
+      }
+    },
     message(state) {
       return state.message.toUpperCase();
     },
     counter(state) {
       return state.count;
+    },
+    findUser(state) {
+      return state.user;
     }
   }
 });
