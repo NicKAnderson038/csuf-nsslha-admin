@@ -3,20 +3,26 @@
     <v-flex lg10 md10 xs10 sm10 offset-sm1>
       <v-card style="margin-top:60px;">
         <!-- <v-btn color="primary" @click="pressed()">Button</v-btn> -->
+        <div class="text-xs-left">
+          <v-btn color="primary" @click="alert = !alert">Number Of Respondents</v-btn>
+        </div>
+        <v-alert color="info" icon="check_circle" :value="alert" transition="scale-transition">
+          Total number of respondents is: <strong>{{items.length}}</strong>
+        </v-alert>
         <v-card-media :src="image" height="360px">
         </v-card-media>
         <!-- <v-parallax :src="image" height="300"></v-parallax> -->
         <v-data-table v-bind:headers="headers" :items="items" hide-actions class="elevation-1">
           <template slot="items" slot-scope="props">
-            <td>{{ props.item.Name }}</td>
-            <td class="text-xs-right">{{ props.item.Email }}</td>
-            <td class="text-xs-right">{{ props.item.Phone }}</td>
-            <td class="text-xs-right">{{ props.item.Nsslha }}</td>
-            <td class="text-xs-right">{{ props.item.Csha }}</td>
-            <td class="text-xs-right">{{ props.item.Attendance }}</td>
-            <!-- <td class="text-xs-right">
-              <v-btn flat color="error" left @click="deleteName(props.item.id)">Delete</v-btn>
-          </td> -->
+              <td>{{ props.item.Name }}</td>
+              <td class="text-xs-right">{{ props.item.Email }}</td>
+              <td class="text-xs-right">{{ props.item.Phone }}</td>
+              <td class="text-xs-right">{{ props.item.Nsslha }}</td>
+              <td class="text-xs-right">{{ props.item.Csha }}</td>
+              <td class="text-xs-right">{{ props.item.Attendance }}</td>
+              <!-- <td class="text-xs-right">
+                <v-btn flat color="error" left @click="deleteName(props.item.id)">Delete</v-btn>
+            </td> -->
 </template>
   </v-data-table>
       </v-card>
@@ -29,6 +35,7 @@ import DeleteUser from "./DeleteUser";
 export default {
   data() {
     return {
+      alert: false,
       clipped: false,
       headers: [
         {
