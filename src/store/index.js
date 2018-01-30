@@ -11,7 +11,8 @@ export const store = new Vuex.Store({
       Name: "Test",
       id: "1234"
     },
-    items: []
+    items: [],
+    id: ""
   },
   mutations: {
     // sycronous
@@ -21,7 +22,7 @@ export const store = new Vuex.Store({
   },
   actions: {
     // async || sycronous
-    async deleteName(id) {
+    async deleteName(state) {
       const request = {
         method: "DELETE",
         headers: {
@@ -30,7 +31,9 @@ export const store = new Vuex.Store({
       };
       try {
         const response = await fetch(
-          `https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha/${id}`,
+          `https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha/${
+            state.id
+          }`,
           request
         );
         // const data = await response.json();
@@ -73,15 +76,38 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    async fetch() {
+    async deleteName(state) {
+      const request = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      try {
+        const response = await fetch(
+          `https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha/${
+            state.idHolder
+          }`,
+          request
+        );
+        // const data = await response.json();
+        console.log("Delete Successful: ", response.ok);
+        this.dialog = false;
+        this.fetch();
+        return;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
+    async fetch(state) {
       try {
         const response = await fetch(
           "https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha"
         );
         const data = await response.json();
         console.log("It worked! ", data);
-        // this.items = data;
-        return data;
+        state.items = data;
+        return;
       } catch (error) {
         throw new Error(err);
       }

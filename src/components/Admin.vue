@@ -78,7 +78,8 @@ export default {
   created() {
     try {
       // this.$store.dispatch("fetch");
-      this.fetch();
+      // this.fetch();
+      this.items = this.$store.state.items;
       this.message;
       this.count;
     } catch (error) {
@@ -104,41 +105,20 @@ export default {
       // /* accessing actions */
       this.$store.dispatch("actIncrement", 20);
       this.$store.dispatch("getFetch");
-    },
-    async deleteName(id) {
-      const request = {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      };
-      try {
-        const response = await fetch(
-          `https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha/${id}`,
-          request
-        );
-        // const data = await response.json();
-        console.log("Delete Successful: ", response.ok);
-        // this.dialog = false;
-        this.fetch();
-        return;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
-    async fetch() {
-      try {
-        const response = await fetch(
-          "https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha"
-        );
-        const data = await response.json();
-        console.log("It worked! ", data);
-        this.items = data;
-        return;
-      } catch (error) {
-        throw new Error(err);
-      }
     }
+    // async fetch() {
+    //   try {
+    //     const response = await fetch(
+    //       "https://fn5nx4fsp7.execute-api.us-east-1.amazonaws.com/dev/nsslha"
+    //     );
+    //     const data = await response.json();
+    //     console.log("It worked! ", data);
+    //     this.items = data;
+    //     return;
+    //   } catch (error) {
+    //     throw new Error(err);
+    //   }
+    // }
   }
 };
 </script>

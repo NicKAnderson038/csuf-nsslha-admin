@@ -35,6 +35,8 @@ export default {
   },
   created() {
     try {
+      // this.fetch;
+      this.$store.getters.fetch;
       // this.$store.dispatch("fetch");
     } catch (error) {
       console.error(error);
