@@ -65,10 +65,6 @@ export default {
           text: "Attendance",
           value: "Attendance"
         }
-        // {
-        //   text: "Delete",
-        //   value: "Delete"
-        // }
       ],
       items: [],
       image:
