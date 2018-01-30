@@ -1,26 +1,25 @@
 <template>
   <v-layout>
     <v-flex lg10 md10 xs10 sm10 offset-sm1>
-      <v-card style="margin-top:60px;">
-        <!-- <v-btn color="primary" @click="pressed()">Button</v-btn> -->
+      <v-card style="margin-top:20px;margin-bottom:20px;">
+        <!-- <div class="text-xs-center">
+          <h1>* * * Survey Admin Portal * * *</h1>
+        </div> -->
         <div class="text-xs-left">
-          <v-btn color="success" to="/">Home Page</v-btn>
-          <v-btn color="warning" to="admin">Admin Page</v-btn>
+          <v-btn color="primary" large to="admin">Admin Page</v-btn>
+          <v-btn color="error" large to="delete-user">Delete Page</v-btn>
+
         </div>
-        <v-alert color="info" icon="check_circle" :value="alert" transition="scale-transition">
-          Total number of respondents is: <strong>{{items.length}}</strong>
-        </v-alert>
-        <v-card-media :src="image" height="360px">
+
+        <v-card-media :src="image" height="600px">
         </v-card-media>
-        <!-- <v-parallax :src="image" height="300"></v-parallax> -->
-        <v-data-table v-bind:headers="headers" :items="items" hide-actions class="elevation-1">
-          <template slot="items" slot-scope="props">
-              <td>{{ props.item.Name }}</td>
-              <td class="text-xs-right">
-                <v-btn flat color="error" left @click="deleteName(props.item.id)">Delete</v-btn>
-            </td>
-</template>
-  </v-data-table>
+        <!-- <div class="text-xs-center">
+          <v-btn color="primary" large to="admin">Admin Page</v-btn>
+          <v-btn color="error" large to="delete-user">Delete Page</v-btn>
+        </div> -->
+        <div class="text-xs-center">
+          <h1>* * * Survey Admin Portal * * *</h1>
+          </div>
       </v-card>
     </v-flex>
   </v-layout>
@@ -30,30 +29,13 @@
 export default {
   data() {
     return {
-      alert: false,
-      clipped: false,
-      headers: [
-        {
-          text: "Names",
-          align: "left",
-          sortable: false,
-          value: "name"
-        },
-        {
-          text: "Delete",
-          value: "Delete"
-        }
-      ],
-      items: [],
-      image: "https://images3.alphacoders.com/205/thumb-1920-205149.jpg"
+      image:
+        "https://i.pinimg.com/736x/1d/ee/ce/1deece2fc7da25ce906c9bf3a0f104e6.jpg"
     };
   },
   created() {
     try {
       // this.$store.dispatch("fetch");
-      this.fetch();
-      this.message;
-      this.count;
     } catch (error) {
       console.error(error);
     }

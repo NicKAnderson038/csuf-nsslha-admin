@@ -4,6 +4,8 @@
       <v-card style="margin-top:60px;">
         <!-- <v-btn color="primary" @click="pressed()">Button</v-btn> -->
         <div class="text-xs-left">
+          <v-btn color="success" to="/">Home Page</v-btn>
+          <v-btn color="error" to="delete-user">Delete Page</v-btn>
           <v-btn color="primary" @click="alert = !alert">Number Of Respondents</v-btn>
         </div>
         <v-alert color="info" icon="check_circle" :value="alert" transition="scale-transition">
@@ -31,7 +33,6 @@
 </template>
 
 <script>
-import DeleteUser from "./DeleteUser";
 export default {
   data() {
     return {
@@ -83,9 +84,6 @@ export default {
     } catch (error) {
       console.error(error);
     }
-  },
-  components: {
-    DeleteUser
   },
   computed: {
     // fetch() {
