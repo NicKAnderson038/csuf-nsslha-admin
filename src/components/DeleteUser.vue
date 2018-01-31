@@ -6,6 +6,7 @@
         <div class="text-xs-left">
           <v-btn color="success" to="/">Home Page</v-btn>
           <v-btn color="warning" to="admin">Admin Page</v-btn>
+          <v-btn color="primary" @click="alert = !alert">Number Of Respondents</v-btn>
         </div>
         <v-alert color="info" icon="check_circle" :value="alert" transition="scale-transition">
           Total number of respondents is: <strong>{{items.length}}</strong>
